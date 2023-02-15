@@ -76,7 +76,7 @@ function Home() {
     const parentElement = e.target.parentNode;
     const dataTitle =  e.target.getAttribute("data-title");
     const dataInfo = e.target.getAttribute("data-info");
-    console.log( parentElement.parentNode)
+   console.log(parentElement)
 
   };
   if (appearApi) {
