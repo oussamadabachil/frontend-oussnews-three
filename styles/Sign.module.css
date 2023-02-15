@@ -1,0 +1,157 @@
+.container > img {
+  display: block;
+  width: 20rem;
+  margin: 0 auto;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  margin: 8rem auto;
+  padding: 0 1rem 0 1rem;
+}
+
+.form > form > p {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.form > h1 {
+  background: -webkit-linear-gradient(
+    rgba(126, 0, 195, 1),
+    rgba(235, 161, 223, 1)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.form {
+  transform: scale(0.9);
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.3rem;
+  display: block;
+  width: 40rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.form > form > input,
+.form > form > label {
+  display: block;
+  font-weight: 600;
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+}
+
+.form > form > label {
+  padding: 0;
+}
+.form > form > input {
+  border-radius: none;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+.form > form > button {
+  transition: all 0.3s;
+  cursor: pointer;
+  display: block;
+  width: 20rem;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  background: rgb(255, 255, 255);
+  border: 0.25rem solid rgb(126, 0, 195);
+}
+.form > form > button:hover {
+  font-size: 1.2rem;
+
+  transition: all 0.3s;
+  transform: matrix(1.1, 0, 0, 1.1, 0, 0);
+  color: white;
+  background: rgb(126, 0, 195);
+}
+
+.popUpWelcome {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  border-radius: 0.5rem;
+  display: flex;
+  z-index: 130;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 40rem;
+  transform: scale(0.5);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: whitesmoke;
+}
+.popUpWelcome > h2 {
+  text-align: center;
+  padding: 1rem;
+}
+.popUpWelcome > h3 {
+  text-align: center;
+}
+
+.opacityShadow {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 122;
+}
+.popUpWelcome > button {
+  width: 30%;
+  font-size: 1rem;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: rgb(191, 0, 255);
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.popUpWelcome > h3 > span {
+  cursor: pointer;
+  text-decoration: underline;
+  color: rgb(191, 0, 255);
+}
+
+.popUpWelcome > button:hover {
+  color: rgb(191, 0, 255);
+  background: white;
+  transition: all 0.3s;
+  border: 0.2rem solid rgb(191, 0, 255);
+}
+
+
+@media screen and (max-width: 1000px) {
+  .container {
+    display: block;
+  }
+  
+}

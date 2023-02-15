@@ -1,0 +1,246 @@
+.main {
+  display: block;
+  width: 100%;
+  margin: 7rem auto;
+}
+
+.container {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem 0 1rem;
+}
+
+.content {
+  display: block;
+  width: 100%;
+  padding: 2rem;
+}
+
+.main > h1 {
+  text-align: center;
+}
+
+.iframe {
+  border: none;
+  display: block;
+  margin: 2rem auto;
+}
+.themeDiv {
+  border-radius: 1rem;
+  display: block;
+  padding: 1rem;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  width: 40rem;
+  margin: 2rem auto;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.themeDiv > h2 {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.themeDiv > button {
+  font-size: 1rem;
+  transition: all 0.3s;
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  margin-left: 1rem;
+}
+.themeDiv > button:hover {
+  cursor: pointer;
+  background-color: #87377b;
+  color: #ffffff;
+  transition: all 0.3s;
+}
+
+.flexContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 15px 0 15px;
+}
+.imgBox > img {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 10rem;
+  background-color: #87377b;
+}
+
+.flexContainer > .card:hover .extraicons {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s;
+  right: 0;
+}
+.extraicons {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  top: 0;
+  right: -1rem;
+  width: 3rem;
+  border-radius: 0rem;
+  z-index: 14;
+  height: 100%;
+}
+
+.extraicons > li:hover {
+  cursor: pointer;
+
+  background-color: #ffffff;
+  color: #87377b;
+  transition: all 0.3s;
+}
+.extraicons > li {
+  color: white;
+  cursor: pointer;
+
+  background: rgb(126, 0, 195);
+  background: linear-gradient(
+    94deg,
+    rgba(126, 0, 195, 1) 0%,
+    rgba(168, 63, 206, 1) 39%,
+    rgba(189, 93, 211, 1) 54%,
+    rgba(190, 94, 211, 1) 55%,
+    rgba(235, 161, 223, 1) 100%
+  );
+  text-align: center;
+  border-radius: 100%;
+  padding: 0.4rem;
+  display: inline-block;
+  font-size: 2rem;
+  transition: all 0.3s;
+}
+.imgBox {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 10rem;
+  background-color: #87377b;
+}
+.flexContainer > .card {
+  position: relative;
+  margin-top: 2rem;
+  border-radius: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  width: 32rem;
+  height: 20rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+}
+.imgBoxOverlay {
+  position: absolute;
+  top: 0;
+  z-index: 12;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.3s;
+  opacity: 1;
+  visibility: visible;
+}
+
+.imgBox > h3 {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 13;
+}
+.details {
+  display: block;
+  width: 100%;
+  height: 6rem;
+  margin: 0rem auto;
+  background-color: aqua;
+}
+
+.popUpAuth {
+  text-align: center;
+  border-radius: 0.5rem;
+  position: fixed;
+  padding: 1rem;
+  z-index: 202;
+  width: 30rem;
+  height: auto;
+  background-color: whitesmoke;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+.popUpAuth > h2 {
+  margin-bottom: 1rem;
+}
+
+.popUpAuth>*>span{
+  color: rgba(168, 63, 206, 1);
+
+  cursor: pointer;
+  text-decoration: underline;
+}
+.popUpAuth > button {
+  transition: all 0.3s;
+  cursor: pointer;
+  display: block;
+  width: 8rem;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  background: rgb(255, 255, 255);
+  border: 0.25rem solid rgb(126, 0, 195);
+}
+
+.opacityShadow {
+  z-index: 200;
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+}
+.popUpAuth > button:hover {
+  font-size: 1.2rem;
+  transition: all 0.3s;
+  transform: matrix(1.1, 0, 0, 1.1, 0, 0);
+  color: white;
+  background: rgb(126, 0, 195);
+}
+
+
+.connectedText{
+  border-radius: .3rem;
+  width: 27rem;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: whitesmoke;
+  margin-top: 10rem;
+  margin-bottom: -3rem;
+  text-align: center;
+  display:block;
+}
