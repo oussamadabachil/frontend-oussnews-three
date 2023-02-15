@@ -60,7 +60,7 @@ function Home() {
 
   useEffect(() => {
     fetch(
-      "https://newsapi.org/v2/everything?sources=the-verge&apiKey=76288293134a4616865d8e75b883b3dd"
+      "https://backend-oussnews-twoo.vercel.app/index/articles"
     )
       .then((res) => res.json())
       .then((data) => {
