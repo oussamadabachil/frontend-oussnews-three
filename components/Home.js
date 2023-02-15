@@ -33,6 +33,8 @@ function Home() {
 
   let newArticless;
 
+  let styleChangeOpacity ; 
+
   let connectedText = <p></p>;
   let popUpShlouldBeConnected = (
     <>
@@ -59,9 +61,7 @@ function Home() {
   });
 
   useEffect(() => {
-    fetch(
-      "https://backend-oussnews-twoo.vercel.app/index/articles"
-    )
+    fetch("https://backend-oussnews-twoo.vercel.app/index/articles")
       .then((res) => res.json())
       .then((data) => {
         if (data.status == "ok") {
@@ -73,17 +73,17 @@ function Home() {
   }, []);
 
   const appearRealPopUp = (e) => {
-    const parentElement = e.target.parentNode;
-    const dataTitle =  e.target.getAttribute("data-title");
+    const parentElement = e.target.parentNode.parentNode;
+    const dataTitle = e.target.getAttribute("data-title");
     const dataInfo = e.target.getAttribute("data-info");
-   console.log(parentElement)
-
   };
   if (appearApi) {
     styleIframe = {
       display: "none",
     };
   }
+
+  let pShouldBeConnected;
 
   useEffect(() => {
     if (token == null) {
@@ -94,69 +94,13 @@ function Home() {
   }, []);
 
   if (!connectedUser) {
-    popUpShlouldBeConnected = (
-      <>
-        <div className={styles.popUpAuth} style={styleAuth}></div>
-      </>
-    );
-    extraIconNotConnected = (
-      <>
-        <li
-          onClick={() => {
-            setAppearPopup(true);
-          }}
-        >
-          <FontAwesomeIcon icon={faEye} />
-        </li>
-        <li
-          onClick={() => {
-            setAppearPopup(true);
-          }}
-        >
-          {" "}
-          <FontAwesomeIcon icon={faShare} />
-        </li>
-        <li
-          onClick={() => {
-            setAppearPopup(true);
-          }}
-        >
-          {" "}
-          <FontAwesomeIcon icon={faBookBookmark} />
-        </li>
-      </>
+    pShouldBeConnected = (
+      <p className={styles.textShloudConnected}>
+        Connectez - vous pour avoir accés aux informations !{" "}
+      </p>
     );
   } else {
-    extraIconNotConnected = (
-      <>
-        <li
-          data-info="1"
-          onClick={(e) => {
-            appearRealPopUp(e);
-          }}
-        >
-          <FontAwesomeIcon icon={faEye} />
-        </li>
-        <li
-          data-info="2"
-          onClick={(e) => {
-            appearRealPopUp(e);
-          }}
-        >
-          {" "}
-          <FontAwesomeIcon icon={faShare} />
-        </li>
-        <li
-          data-info="3"
-          onClick={(e) => {
-            appearRealPopUp(e);
-          }}
-        >
-          {" "}
-          <FontAwesomeIcon icon={faBookBookmark} />
-        </li>
-      </>
-    );
+    extraIconNotConnected = <></>;
 
     connectedText = (
       <>
@@ -182,27 +126,75 @@ function Home() {
   }
 
   newArticless = newArticles.map((article) => {
-    return (
-      <div className={styles.card}>
-        <div className={styles.imgBox}>
-          <div className={styles.imgBoxOverlay}></div>
-          <img src={article.urlToImage} />
-          <h3>{article.title}</h3>
-        </div>
-        <div className={styles.content}>
-          <p>{article.description}</p>
-        </div>
-        <ul className={styles.extraicons}
-        data-title={article.title}
-        data-urlToImage = {article.urlToImage}
-        data-url = {article.url}
+    if (connectedUser) {
 
-        data-author = {article.author}
-        
-        
-        >{extraIconNotConnected}</ul>
-      </div>
-    );
+      styleChangeOpacity = {
+        display:'none'
+      }
+      return (
+        <div className={styles.card}>
+          <div className={styles.imgBox}>
+            <div className={styles.imgBoxOverlay}></div>
+            <img src={article.urlToImage} />
+            <h3>{article.title}</h3>
+          </div>
+          <div className={styles.content}>
+            <p>{article.description}</p>
+          </div>
+          <ul
+            className={styles.extraicons}
+          
+          >
+            <li
+              data-info="1"
+              data-title={article.title}
+              data-urlToImage={article.urlToImage}
+              data-url={article.url}
+              data-author={article.author}
+              onClick={(e) => {
+                appearRealPopUp(e);
+              }}
+            >
+              <FontAwesomeIcon icon={faEye} />
+            </li>
+            <li
+              data-info="2"
+              onClick={(e) => {
+                appearRealPopUp(e);
+              }}
+            >
+              {" "}
+              <FontAwesomeIcon icon={faShare} />
+            </li>
+            <li
+              data-info="3"
+              onClick={(e) => {
+                appearRealPopUp(e);
+              }}
+            >
+              {" "}
+              <FontAwesomeIcon icon={faBookBookmark} />
+            </li>
+          </ul>
+        </div>
+      );
+    } else {
+      styleChangeOpacity = {
+        display:'block'
+      }
+      return (
+        <div className={styles.card}>
+          <div className={styles.imgBox}>
+            <div className={styles.imgBoxOverlay}></div>
+            <img src="lockedWallpaper.jpg"/>
+            <h3>Titre vérouillée</h3>
+          </div>
+          <div className={styles.content}>
+            <p>Description verouillée</p>
+          </div>
+        </div>
+      );
+    }
   });
 
   return (
@@ -222,7 +214,12 @@ function Home() {
             className={styles.iframe}
             src="https://embed.lottiefiles.com/animation/98635"
           ></iframe>
-          <div className={styles.flexContainer}>{newArticless}</div>
+          {pShouldBeConnected}
+
+          <div className={styles.flexContainer}>
+            {newArticless}
+            <div className={styles.opacityContainerArticles} style={styleChangeOpacity}></div>
+          </div>
         </div>
       </div>
 

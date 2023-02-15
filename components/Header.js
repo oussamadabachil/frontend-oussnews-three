@@ -16,7 +16,6 @@ function Header() {
   let menuInfo = (
     <>
       <button
-      
         onClick={() => {
           router.push("/signup");
           animationFalse();
