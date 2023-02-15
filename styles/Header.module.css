@@ -79,3 +79,14 @@
     color: #000000;
     transition: all .3s;
 }
+
+
+@media screen and (max-width:1000px) {
+.roundAnimation{
+    overflow: hidden;
+}
+    .roundAnimation>button{
+        font-size: 2.5rem;
+        width: 40rem;
+    }
+}

@@ -251,7 +251,11 @@
    width: 96%;
   }
   .imgBoxOverlay>h3{
-    font-size: 1rem;
+    font-size: .78rem;
     width: 90%;
+  }
+
+  .content>p{
+    font-size: .8rem;
   }
 }
