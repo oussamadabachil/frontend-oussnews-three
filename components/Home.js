@@ -33,7 +33,7 @@ function Home() {
 
   let newArticless;
 
-  let styleChangeOpacity ; 
+  let styleChangeOpacity;
 
   let connectedText = <p></p>;
   let popUpShlouldBeConnected = (
@@ -73,9 +73,9 @@ function Home() {
   }, []);
 
   const appearRealPopUp = (e) => {
-    const parentElement = e.target.parentNode.parentNode;
     const dataTitle = e.target.getAttribute("data-title");
     const dataInfo = e.target.getAttribute("data-info");
+    console.log(dataInfo,dataTitle,"sssss")
   };
   if (appearApi) {
     styleIframe = {
@@ -127,10 +127,9 @@ function Home() {
 
   newArticless = newArticles.map((article) => {
     if (connectedUser) {
-
       styleChangeOpacity = {
-        display:'none'
-      }
+        display: "none",
+      };
       return (
         <div className={styles.card}>
           <div className={styles.imgBox}>
@@ -141,10 +140,7 @@ function Home() {
           <div className={styles.content}>
             <p>{article.description}</p>
           </div>
-          <ul
-            className={styles.extraicons}
-          
-          >
+          <ul className={styles.extraicons}>
             <li
               data-info="1"
               data-title={article.title}
@@ -180,13 +176,13 @@ function Home() {
       );
     } else {
       styleChangeOpacity = {
-        display:'block'
-      }
+        display: "block",
+      };
       return (
         <div className={styles.card}>
           <div className={styles.imgBox}>
             <div className={styles.imgBoxOverlay}></div>
-            <img src="lockedWallpaper.jpg"/>
+            <img src="lockedWallpaper.jpg" />
             <h3>Titre vérouillée</h3>
           </div>
           <div className={styles.content}>
@@ -218,7 +214,10 @@ function Home() {
 
           <div className={styles.flexContainer}>
             {newArticless}
-            <div className={styles.opacityContainerArticles} style={styleChangeOpacity}></div>
+            <div
+              className={styles.opacityContainerArticles}
+              style={styleChangeOpacity}
+            ></div>
           </div>
         </div>
       </div>
