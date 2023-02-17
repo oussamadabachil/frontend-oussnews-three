@@ -286,3 +286,50 @@
     font-size: .8rem;
   }
 }
+
+.popUpShowDetail{
+  padding: 1rem;
+  position: fixed;
+  border-radius: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 202;
+  width: 60rem;
+  height: 40rem;
+  background-color: red;
+}
+
+.imgBackground{
+  border-radius: .5rem;
+  display: block;
+  width: 100%;
+  background-color: rgb(0, 255, 98);
+  height: 10rem;
+}
+
+.boxTitle{
+  font-size: 1.3rem;
+  margin: 1rem;
+}
+.boxDescription{
+  font-size: 1.1rem;
+  margin: 1rem;
+}
+
+.authorBox>h4{
+  margin: 1rem;
+
+}
+
+.boxDescription>p{
+  border-radius: .5rem;
+
+  overflow-y: scroll;
+  height: 10rem;
+  width: 100%;
+  background-color: white;
+
+  margin: 1rem auto;
+  padding: 1rem;
+}

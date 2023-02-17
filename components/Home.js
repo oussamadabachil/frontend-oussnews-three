@@ -19,6 +19,13 @@ import {
 import { icon } from "@fortawesome/fontawesome-svg-core";
 
 function Home() {
+  const [dataInfo, setDataInfo] = useState("");
+  const [dataTitle, setDataTitle] = useState("");
+  const [dataAuthor, setDataAuthor] = useState("");
+  const [dataUrlToImg, setDataUrlToImg] = useState("");
+  const [dataPublished, setDataPublished] = useState("");
+  const [dataUrl, setDataUrl] = useState("");
+
   let extraIconNotConnected = <ul></ul>;
   const [connectedUser, setConnectedUser] = useState(false);
   const token = useSelector((state) => state.user.value.token);
@@ -72,11 +79,7 @@ function Home() {
       });
   }, []);
 
-  const appearRealPopUp = (e) => {
-    const dataTitle = e.target.getAttribute("data-title");
-    const dataInfo = e.target.getAttribute("data-info");
-    console.log(dataInfo,dataTitle,"sssss")
-  };
+  const appearRealPopUp = (e) => {};
   if (appearApi) {
     styleIframe = {
       display: "none",
@@ -106,6 +109,7 @@ function Home() {
       <>
         <p className={styles.connectedText}>
           Connecté en tant que {token.username}
+          {dataTitle}
         </p>
       </>
     );
@@ -148,6 +152,11 @@ function Home() {
               data-url={article.url}
               data-author={article.author}
               onClick={(e) => {
+                setDataTitle(article.title);
+                setDataAuthor(article.author);
+                setDataPublished(article.publishedAt);
+                setDataUrlToImg(article.urlToImage);
+                setDataUrl(article.url);
                 appearRealPopUp(e);
               }}
             >
@@ -254,6 +263,30 @@ function Home() {
         </button>
       </div>
       <div className={styles.opacityShadow} style={styleAuth}></div>
+      <div className={styles.popUpShowDetail}>
+        <div className={styles.imgBackground}></div>
+        <div className={styles.boxTitle}>
+          <h3>Titre : </h3>
+        </div>
+        <div className={styles.boxDescription}>
+          <h3>Description : </h3>
+          <p>
+            Blablab kablabal balbalba lbalbalb Blabla bkabla balba lbalbalbal balb
+            Bla blabk ablab albal balb albalb lbB lablabk blabalb albalba lbalbalb
+            Blab labkabla balbal balbalbalbalb Blablab kablabalb alba lbalbalbalb
+            Blabl abka blabalbalb albalbalbalb
+          </p>
+        </div>
+        <div className={styles.authorBox}>
+          <h4>Auteur : </h4>
+        </div>
+        <div className={styles.publishedAtBox}>
+          <h4>Date de publication : </h4>
+        </div>
+      </div>
+      <ul>
+        <li></li>
+      </ul>
     </>
   );
 }
