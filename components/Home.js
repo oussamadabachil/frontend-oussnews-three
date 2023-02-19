@@ -117,7 +117,6 @@ function Home() {
     );
   } else {
     extraIconNotConnected = <></>;
-
     connectedText = (
       <>
         <p className={styles.connectedText}>
@@ -319,13 +318,16 @@ function Home() {
           <h4>Auteur : {dataAuthor} </h4>
         </div>
         <div className={styles.publishedAtBox}>
-          <h4>Date de publication : {dataPublished.slice(0,10)} à {dataPublished.slice(11,16).replace(":","H")}</h4>
+          <h4>
+            Date de publication : {dataPublished.slice(0, 10)} à{" "}
+            {dataPublished.slice(11, 16).replace(":", "H")}
+          </h4>
         </div>
-        <button className={styles.buttonDiv}>Aller sur le site </button>
+        <button className={styles.buttonDiv}><a href={dataUrl} target='_blank'>Aller sur le site </a></button>
       </div>
       <ul>
         <li></li>
-      </ul> 
+      </ul>
 
       <div
         className={styles.opacityPopUp}

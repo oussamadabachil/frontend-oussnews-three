@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { setAnimation } from "../reducer/animation";
+import { eraseData } from "../reducer/user";
+
 import {
   faUser,
   faSearch,
@@ -12,6 +14,9 @@ import {
 import { useEffect, useState } from "react";
 
 function Header() {
+  const dispatch = useDispatch();
+
+
   const [connectedUser, setConnectedUser] = useState(false);
   let menuInfo = (
     <>
@@ -55,7 +60,10 @@ function Header() {
         </button>
         <button
           onClick={() => {
-            router.push("/signup");
+
+            dispatch(eraseData())
+            window.location.reload()
+            router.push('/')
             animationFalse();
           }}
         >
@@ -67,7 +75,6 @@ function Header() {
 
   const router = useRouter();
   const animation = useSelector((state) => state.animation.value);
-  const dispatch = useDispatch();
   let iconSiwtch = faBars;
   const animationFalse = () => {
     dispatch(setAnimation(false));

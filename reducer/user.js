@@ -19,8 +19,11 @@ export const userSlice = createSlice({
       state.value=action.payload
     },
     
+    eraseData :(state, action) => {
+      state.value.token=""
+    }
   },
 });
 
-export const { collectData , collectToken } = userSlice.actions;
+export const { collectData , collectToken , eraseData } = userSlice.actions;
 export default userSlice.reducer;

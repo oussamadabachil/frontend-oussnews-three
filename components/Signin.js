@@ -18,6 +18,9 @@ import {
 import styles from "../styles/Sign.module.css";
 import { text } from "@fortawesome/fontawesome-svg-core";
 function Signin() {
+  let styleIframe = {
+    display: "block",
+  };
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -33,6 +36,7 @@ function Signin() {
   );
   //regex only alphabet
 
+  const [auth, setAuth] = useState(false);
   const [connected, setConnected] = useState(false);
   const [displayMessageGOB, setDisplayMessageGOB] = useState(false);
   let styleOpacity = {};
@@ -53,7 +57,11 @@ function Signin() {
   // check if the form is valid
 
   const connect = () => {
+    setAuth(false);
     if (username && password) {
+      setConnected(true);
+
+      setDisplayMessageGOB(false);
       fetch("https://backend-oussnews-twoo.vercel.app/users/signin", {
         method: "POST",
         headers: {
@@ -69,19 +77,25 @@ function Signin() {
           setConnected(true);
 
           if (data.result) {
+            setDisplayMessageGOB(true);
             dispatch(collectToken(data.data));
+            setAuth(true);
 
             setMessageData(data.message);
             setDataUser([data.data.username]);
             setTimeout(() => {
               router.push("/");
             }, 1000);
-
           } else {
             setMessageData(data.message);
           }
         });
     } else {
+      setDisplayMessageGOB(false);
+      styleIframe = {
+        display: "none",
+      };
+
       setConnected(true);
 
       setMessageData("Remplissez tous vos champs");
@@ -106,9 +120,14 @@ function Signin() {
     };
   }
 
-  if (displayMessageGOB) {
+  if (!displayMessageGOB) {
     descriptionPopUp = (
       <>
+        <iframe
+          style={styleIframe}
+          className={styles.iframe}
+          src="https://embed.lottiefiles.com/animation/98635"
+        ></iframe>
         <h2>{messageData} </h2>
       </>
     );
@@ -118,7 +137,6 @@ function Signin() {
         <h2>
           {messageData} , {dataUser}{" "}
         </h2>
-        <h3>Vous allez etre redirigé vers la page d'accueil</h3>
       </>
     );
   }
@@ -126,7 +144,7 @@ function Signin() {
     <>
       <Header />
       <div className={styles.container}>
-        <img src="./pngManWorking.png" alt="man working" />
+        {/* <img src="./pngManWorking.png" alt="man working" /> */}
         <div className={styles.form}>
           <h1>Page de connexion</h1>
           <form method="POST">
