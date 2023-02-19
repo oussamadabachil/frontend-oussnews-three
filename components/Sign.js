@@ -221,7 +221,6 @@ function Sign() {
     <>
       <Header />
       <div className={styles.container}>
-        <img src="./pngManWorking.png" alt="man working" />
         <div className={styles.form}>
           <h1>Page d'inscrption</h1>
           <form method="POST">
