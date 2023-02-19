@@ -282,6 +282,10 @@
   .content > p {
     font-size: 0.8rem;
   }
+
+  .textShloudConnected{
+    max-width: 30rem;
+  }
 }
 
 .buttonDiv:hover {
