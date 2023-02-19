@@ -15,16 +15,24 @@ import {
   faBookBookmark,
   faEye,
   faShare,
+  faMagnifyingGlassPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 
 function Home() {
+  let opacityPopUpStyle = {};
+
+  const [changeHeight, setChangeHeight] = useState(false);
   const [dataInfo, setDataInfo] = useState("");
   const [dataTitle, setDataTitle] = useState("");
   const [dataAuthor, setDataAuthor] = useState("");
   const [dataUrlToImg, setDataUrlToImg] = useState("");
   const [dataPublished, setDataPublished] = useState("");
+  const [dataDescription, setDataDescription] = useState("");
+
+  let heightChange = "10rem";
   const [dataUrl, setDataUrl] = useState("");
+  const [popUpDetails, setPopupDetal] = useState(false);
 
   let extraIconNotConnected = <ul></ul>;
   const [connectedUser, setConnectedUser] = useState(false);
@@ -55,6 +63,8 @@ function Home() {
 
   const [newArticles, setNewArticle] = useState([]);
   const dispatch = useDispatch();
+
+  let popUpShowDetailStyle = {};
 
   const animation = useSelector((state) => state.animation.value);
 
@@ -96,6 +106,9 @@ function Home() {
     }
   }, []);
 
+  if (changeHeight) {
+    heightChange = "30rem";
+  }
   if (!connectedUser) {
     pShouldBeConnected = (
       <p className={styles.textShloudConnected}>
@@ -129,6 +142,17 @@ function Home() {
     };
   }
 
+  if (popUpDetails) {
+    popUpShowDetailStyle = {
+      opacity: "1",
+      visibility: "visible",
+      transition: "all .3s",
+    };
+    opacityPopUpStyle = {
+      display: "block",
+    };
+  }
+
   newArticless = newArticles.map((article) => {
     if (connectedUser) {
       styleChangeOpacity = {
@@ -153,11 +177,13 @@ function Home() {
               data-author={article.author}
               onClick={(e) => {
                 setDataTitle(article.title);
+                setDataDescription(article.description);
                 setDataAuthor(article.author);
                 setDataPublished(article.publishedAt);
                 setDataUrlToImg(article.urlToImage);
                 setDataUrl(article.url);
                 appearRealPopUp(e);
+                setPopupDetal(true);
               }}
             >
               <FontAwesomeIcon icon={faEye} />
@@ -263,30 +289,51 @@ function Home() {
         </button>
       </div>
       <div className={styles.opacityShadow} style={styleAuth}></div>
-      <div className={styles.popUpShowDetail}>
-        <div className={styles.imgBackground}></div>
+      <div className={styles.popUpShowDetail} style={popUpShowDetailStyle}>
+        <div
+          className={styles.imgBackground}
+          style={{
+            backgroundImage: `url('${dataUrlToImg}') `,
+            height: `${heightChange}`,
+          }}
+        >
+          <i
+            onClick={() => {
+              setChangeHeight(true);
+              if (changeHeight) {
+                setChangeHeight(false);
+              }
+            }}
+          >
+            <FontAwesomeIcon icon={faMagnifyingGlassPlus} />
+          </i>
+        </div>
         <div className={styles.boxTitle}>
-          <h3>Titre : </h3>
+          <h3>Titre : {dataTitle} </h3>
         </div>
         <div className={styles.boxDescription}>
           <h3>Description : </h3>
-          <p>
-            Blablab kablabal balbalba lbalbalb Blabla bkabla balba lbalbalbal balb
-            Bla blabk ablab albal balb albalb lbB lablabk blabalb albalba lbalbalb
-            Blab labkabla balbal balbalbalbalb Blablab kablabalb alba lbalbalbalb
-            Blabl abka blabalbalb albalbalbalb
-          </p>
+          <p>{dataDescription}</p>
         </div>
         <div className={styles.authorBox}>
-          <h4>Auteur : </h4>
+          <h4>Auteur : {dataAuthor} </h4>
         </div>
         <div className={styles.publishedAtBox}>
-          <h4>Date de publication : </h4>
+          <h4>Date de publication : {dataPublished.slice(0,10)} à {dataPublished.slice(11,16).replace(":","H")}</h4>
         </div>
+        <button className={styles.buttonDiv}>Aller sur le site </button>
       </div>
       <ul>
         <li></li>
-      </ul>
+      </ul> 
+
+      <div
+        className={styles.opacityPopUp}
+        onClick={() => {
+          setPopupDetal(false);
+        }}
+        style={opacityPopUpStyle}
+      ></div>
     </>
   );
 }
