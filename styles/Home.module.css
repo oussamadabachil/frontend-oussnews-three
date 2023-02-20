@@ -286,6 +286,9 @@
   .textShloudConnected{
     max-width: 30rem;
   }
+  .main>h1{
+    font-size: 1rem;
+  }
 }
 
 .buttonDiv:hover {
