@@ -289,8 +289,20 @@
   .main>h1{
     font-size: 1rem;
   }
+  
 }
 
+.buttonDiv>a:hover{
+  color: rgb(126, 0, 195);
+  transition: all .3s;
+
+
+}
+.buttonDiv>a{
+  transition: all .3s;
+  text-decoration: none;
+  color: white;
+}
 .buttonDiv:hover {
   background: rgb(255, 255, 255);
   color: rgb(126, 0, 195);

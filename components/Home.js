@@ -121,7 +121,6 @@ function Home() {
       <>
         <p className={styles.connectedText}>
           Connecté en tant que {token.username}
-          {dataTitle}
         </p>
       </>
     );
@@ -217,10 +216,10 @@ function Home() {
           <div className={styles.imgBox}>
             <div className={styles.imgBoxOverlay}></div>
             <img src="lockedWallpaper.jpg" />
-            <h3>Titre vérouillée</h3>
+            <h3>Titre verrouillée</h3>
           </div>
           <div className={styles.content}>
-            <p>Description verouillée</p>
+            <p>Description verrouillée</p>
           </div>
         </div>
       );
@@ -323,7 +322,11 @@ function Home() {
             {dataPublished.slice(11, 16).replace(":", "H")}
           </h4>
         </div>
-        <button className={styles.buttonDiv}><a href={dataUrl} target='_blank'>Aller sur le site </a></button>
+        <button className={styles.buttonDiv}>
+          <a href={dataUrl} target="_blank">
+            Aller sur le site{" "}
+          </a>
+        </button>
       </div>
       <ul>
         <li></li>
