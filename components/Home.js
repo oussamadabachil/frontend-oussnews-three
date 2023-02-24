@@ -2,6 +2,9 @@ import styles from "../styles/Home.module.css";
 import Header from "./Header";
 
 import { useRouter } from "next/router";
+import Swal from 'sweetalert2'
+
+// CommonJS
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -19,7 +22,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 
+
 function Home() {
+  const Swal = require('sweetalert2')
+
   let opacityPopUpStyle = {};
 
   const [changeHeight, setChangeHeight] = useState(false);
@@ -37,6 +43,7 @@ function Home() {
   let extraIconNotConnected = <ul></ul>;
   const [connectedUser, setConnectedUser] = useState(false);
   const token = useSelector((state) => state.user.value.token);
+  const idUser = useSelector((state) => state.user.value);
 
   let styleIframe, styleAuth;
 
@@ -95,6 +102,40 @@ function Home() {
       display: "none",
     };
   }
+
+  const toBookmark = () => {
+   
+    console.log(idUser.token._id);
+    fetch(
+      `https://backend-oussnews-twoo.vercel.app/bookmarks/addBookmark/${idUser.token._id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: 'title',
+        }),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+
+        console.log(data)
+        if(data.result){
+
+
+        }else{
+
+          Swal.fire({
+            title: 'Error!',
+            text: data.message,
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+        }
+      });
+  };
 
   let pShouldBeConnected;
 
@@ -198,7 +239,7 @@ function Home() {
             <li
               data-info="3"
               onClick={(e) => {
-                appearRealPopUp(e);
+                toBookmark();
               }}
             >
               {" "}
